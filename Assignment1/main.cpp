@@ -9,8 +9,8 @@
 
 int main() {
     sayHello();
-    std::string input;
-    while (std::getline(std::cin, input)) {
+    string input;
+    while (getline(cin, input)) {
         sayHello(input);
     }
 

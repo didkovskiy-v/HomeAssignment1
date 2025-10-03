@@ -7,7 +7,8 @@
 #define HELLO_H
 
 #include <string>
+using namespace std;
 
-void sayHello(const std::string& name = "");
+void sayHello(const string& name = "");
 
 #endif

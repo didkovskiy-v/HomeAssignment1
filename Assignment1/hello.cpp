@@ -7,10 +7,10 @@
 #include <string>
 #include "hello.h"
 
-void sayHello(const std::string& name) {
+void sayHello(const string& name) {
     if (name.empty()) {
-        std::cout << "Hello, world!" << std::endl;
+        cout << "Hello, world!" << endl;
     } else {
-        std::cout << "Hello, " << name << "!" << std::endl;
+        cout << "Hello, " << name << "!" << endl;
     }
 }
