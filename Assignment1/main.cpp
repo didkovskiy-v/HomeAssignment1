@@ -1,3 +1,8 @@
+/*
+  * Vatslav Didkovskiy
+  * st142215@student.spbu.ru
+  * HomeAssignment1
+  */
 #include <iostream>
 #include <string>
 #include "hello.h"
