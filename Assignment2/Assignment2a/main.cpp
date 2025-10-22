@@ -1,7 +1,7 @@
 /*
   * Vatslav Didkovskiy
   * st142215@student.spbu.ru
-  * HomeAssignment1
+  * HomeAssignment2a
   */
 #include "for_files.h"
 

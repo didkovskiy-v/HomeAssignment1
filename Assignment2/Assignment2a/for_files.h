@@ -1,7 +1,7 @@
 /*
   * Vatslav Didkovskiy
   * st142215@student.spbu.ru
-  * HomeAssignment1
+  * HomeAssignment2a
   */
 #ifndef FOR_FILES_H
 #define FOR_FILES_H
