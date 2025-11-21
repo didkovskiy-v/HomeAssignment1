@@ -5,39 +5,32 @@
   */
 #include "Decepticon.h"
 
-Decepticon::Decepticon(const std::string& name, unsigned int level)
-    : Transformer(name, level), _faction("Decepticon"), _aggression(80) {
-    std::cout << "Decepticon " << name << " created." << std::endl;
+Decepticon::Decepticon(const std::string& name, unsigned int level, unsigned int strength,
+                       unsigned int range, unsigned int ammo, bool treachery_level,
+                       const std::string& disguise_form, int engine_power)
+    : Transformer(name, level, strength, range, ammo, engine_power),
+      treachery_level_(treachery_level), disguise_form_(disguise_form) {}
+
+bool Decepticon::GetTreacheryLevel() const {
+    return treachery_level_;
 }
 
-Decepticon::~Decepticon() {
-    std::cout << "Decepticon " << getName() << " destroyed." << std::endl;
+std::string Decepticon::GetDisguiseForm() const {
+    return disguise_form_;
 }
 
-std::string Decepticon::getFaction() const {
-    return _faction;
+void Decepticon::SetTreacheryLevel(bool treachery_level) {
+    treachery_level_ = treachery_level;
 }
 
-void Decepticon::setFaction(const std::string& faction) {
-    _faction = faction;
+void Decepticon::SetDisguiseForm(const std::string& disguise_form) {
+    disguise_form_ = disguise_form;
 }
 
-unsigned int Decepticon::getAggression() const {
-    return _aggression;
-}
-
-void Decepticon::setAggression(unsigned int aggression) {
-    if (aggression <= 100) {
-        _aggression = aggression;
-    }
-}
-
-bool Decepticon::attack() {
-    std::cout << getName() << " is attacking with aggression " << _aggression << "!" << std::endl;
+bool Decepticon::Transform() {
     return true;
 }
 
-bool Decepticon::sabotage() {
-    std::cout << getName() << " is sabotaging enemy systems!" << std::endl;
+bool Decepticon::Sabotage() {
     return true;
 }

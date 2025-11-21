@@ -1,30 +1,35 @@
 CXX = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra
+LDFLAGS = -lgtest -lgtest_main -pthread
 
-CXXFLAGS = -std=c++17 -Wall -Wextra -g
+OBJ_DIR = build
 
-LDFLAGS = -lgtest -lgtest_main -lpthread
+MAIN_SRCS = Transformer.cpp Engine.cpp Autobot.cpp Decepticon.cpp Neutral.cpp main.cpp
+OBJS = $(MAIN_SRCS:%.cpp=$(OBJ_DIR)/%.o)
+EXEC = $(OBJ_DIR)/transformer_game
 
-SRC = Transformer.cpp Autobot.cpp Decepticon.cpp Neutral.cpp main.cpp
+TEST_SRCS = $(wildcard test_*.cpp)
+TEST_EXES = $(TEST_SRCS:test_%.cpp=$(OBJ_DIR)/test_%.test)
 
-HDR = Transformer.h Autobot.h Decepticon.h Neutral.h
+$(shell mkdir -p $(OBJ_DIR))
 
-TEST_SRC = transformer_test.cpp
+all: $(EXEC)
 
-TARGET = transformers
-TEST_TARGET = transformer_tests
+$(EXEC): $(OBJS)
+	$(CXX) $(OBJS) -o $@
 
-all: $(TARGET) $(TEST_TARGET)
+$(OBJ_DIR)/%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(TARGET): $(SRC) $(HDR)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+$(OBJ_DIR)/test_%.test: test_%.cpp $(OBJS)
+	$(CXX) $(CXXFLAGS) $< $(OBJS) $(LDFLAGS) -o $@
 
-$(TEST_TARGET): $(SRC) $(HDR) $(TEST_SRC)
-	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
-
-test: $(TEST_TARGET)
-	./$(TEST_TARGET)
+test: $(TEST_EXES)
+	@for t in $(TEST_EXES); do \
+		./$$t || exit 1; \
+	done
 
 clean:
-	rm -f $(TARGET) $(TEST_TARGET)
+	rm -rf $(OBJ_DIR)
 
 .PHONY: all test clean

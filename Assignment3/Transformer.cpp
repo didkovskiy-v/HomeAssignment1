@@ -5,103 +5,90 @@
   */
 #include "Transformer.h"
 
-Engine::Engine(const std::string& type) : _type(type) {
-    std::cout << "Engine created: " << _type << std::endl;
+Transformer::Transformer(const std::string& name, unsigned int level, unsigned int strength,
+                         unsigned int range, unsigned int ammo, int engine_power)
+    : name_(name), level_(level), strength_(strength), range_(range), ammo_(ammo),
+      engine_(engine_power), ally_(nullptr) {}
+
+std::string Transformer::GetName() const {
+    return name_;
 }
 
-Engine::~Engine() {
-    std::cout << "Engine destroyed: " << _type << std::endl;
+unsigned int Transformer::GetLevel() const {
+    return level_;
 }
 
-std::string Engine::getType() const {
-    return _type;
+unsigned int Transformer::GetStrength() const {
+    return strength_;
 }
 
-void Engine::setType(const std::string& type) {
-    _type = type;
+unsigned int Transformer::GetRange() const {
+    return range_;
 }
 
-Transformer::Transformer(const std::string& name, unsigned int level)
-    : _name(name), _level(level), _strength(100), _fuel(100), _engine("Standard"), _ally(nullptr) {
-    std::cout << "Transformer " << _name << " created." << std::endl;
+unsigned int Transformer::GetAmmo() const {
+    return ammo_;
 }
 
-Transformer::~Transformer() {
-    std::cout << "Transformer " << _name << " destroyed." << std::endl;
+const Engine& Transformer::GetEngine() const {
+    return engine_;
 }
 
-std::string Transformer::getName() const {
-    return _name;
+Transformer* Transformer::GetAlly() const {
+    return ally_;
 }
 
-void Transformer::setName(const std::string& name) {
-    _name = name;
+void Transformer::SetName(const std::string& name) {
+    name_ = name;
 }
 
-unsigned int Transformer::getLevel() const {
-    return _level;
+void Transformer::SetLevel(unsigned int level) {
+    level_ = level;
 }
 
-void Transformer::setLevel(unsigned int level) {
-    if (level > 0) {
-        _level = level;
-    }
+void Transformer::SetStrength(unsigned int strength) {
+    strength_ = strength;
 }
 
-unsigned int Transformer::getStrength() const {
-    return _strength;
+void Transformer::SetRange(unsigned int range) {
+    range_ = range;
 }
 
-void Transformer::setStrength(unsigned int strength) {
-    if (strength <= 1000) {
-        _strength = strength;
-    }
+void Transformer::SetAmmo(unsigned int ammo) {
+    ammo_ = ammo;
 }
 
-unsigned int Transformer::getFuel() const {
-    return _fuel;
+void Transformer::SetEnginePower(int power) {
+    engine_.SetPower(power);
 }
 
-void Transformer::setFuel(unsigned int fuel) {
-    if (fuel <= 100) {
-        _fuel = fuel;
-    }
+void Transformer::SetAlly(Transformer* ally) {
+    ally_ = ally;
 }
 
-bool Transformer::move() {
-    if (_fuel > 0) {
-        _fuel--;
-        std::cout << _name << " is moving. Fuel left: " << _fuel << std::endl;
-        return true;
-    }
-    std::cout << _name << " has no fuel to move!" << std::endl;
-    return false;
-}
-
-bool Transformer::transform() {
-    std::cout << _name << " is transforming!" << std::endl;
+bool Transformer::Move() {
     return true;
 }
 
-bool Transformer::fire() {
-    if (_fuel > 0 && _strength > 0) {
-        _fuel -= 5;
-        _strength -= 10;
-        std::cout << _name << " fired! Strength: " << _strength << ", Fuel: " << _fuel << std::endl;
-        return true;
+bool Transformer::Fire() {
+    if (ammo_ > 0) {
+        ammo_--;
     }
-    std::cout << _name << " cannot fire: low fuel or strength!" << std::endl;
-    return false;
+    return true;
 }
 
-void Transformer::setAlly(Transformer* ally) {
-    _ally = ally;
+bool Transformer::Transform() {
+    return true;
 }
 
-Transformer* Transformer::getAlly() const {
-    return _ally;
+void Transformer::TakeDamage(unsigned int damage) {
+    if (damage >= strength_) {
+        strength_ = 0;
+    } else {
+        strength_ -= damage;
+    }
 }
 
-void Transformer::internalCheck() {
-    std::cout << "Internal check for " << _name << std::endl;
+bool Transformer::IsAlive() const {
+    return strength_ > 0;
 }

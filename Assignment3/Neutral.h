@@ -9,22 +9,22 @@
 #include "Transformer.h"
 
 class Neutral : public Transformer {
-public:
-    Neutral(const std::string& name = "Bumblebee", unsigned int level = 3);
-    ~Neutral();
-
-    std::string getRole() const;
-    void setRole(const std::string& role);
-
-    unsigned int getNeutrality() const;
-    void setNeutrality(unsigned int neutrality);
-
-    bool mediate();
-    bool observe();
-
 private:
-    std::string _role;
-    unsigned int _neutrality;
-};
+    std::string affiliation_;
+    bool mercenary_;
 
-#endif // NEUTRAL_H
+public:
+    Neutral(const std::string& name, unsigned int level, unsigned int strength,
+            unsigned int range, unsigned int ammo, const std::string& affiliation,
+            bool mercenary = false, int engine_power = 100);
+
+    std::string GetAffiliation() const;
+    bool GetMercenary() const;
+
+    void SetAffiliation(const std::string& affiliation);
+    void SetMercenary(bool mercenary);
+
+    bool Transform() override;
+    bool Negotiate();
+};
+#endif

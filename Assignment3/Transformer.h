@@ -7,54 +7,45 @@
 #define TRANSFORMER_H
 
 #include <string>
-#include <iostream>
-
-class Engine {
-public:
-    Engine(const std::string& type = "Standard");
-    ~Engine();
-
-    std::string getType() const;
-    void setType(const std::string& type);
-
-private:
-    std::string _type;
-};
+#include "Engine.h"
 
 class Transformer {
-public:
-    Transformer(const std::string& name = "Unknown", unsigned int level = 1);
-    virtual ~Transformer();
-    std::string getName() const;
-    void setName(const std::string& name);
-
-    unsigned int getLevel() const;
-    void setLevel(unsigned int level);
-
-    unsigned int getStrength() const;
-    void setStrength(unsigned int strength);
-
-    unsigned int getFuel() const;
-    void setFuel(unsigned int fuel);
-
-    bool move();
-    bool transform();
-    bool fire();
-
-    void setAlly(Transformer* ally);
-    Transformer* getAlly() const;
-
-protected:
-    std::string _name;
-    unsigned int _level;
-    unsigned int _strength;
-    unsigned int _fuel;
-
-    Engine _engine;
-    Transformer* _ally;
-
 private:
-    void internalCheck();
+    std::string name_;
+    unsigned int level_;
+    unsigned int strength_;
+    unsigned int range_;
+    unsigned int ammo_;
+    Engine engine_;
+    Transformer* ally_;
+
+public:
+    Transformer(const std::string& name, unsigned int level, unsigned int strength,
+                unsigned int range, unsigned int ammo, int engine_power = 100);
+    virtual ~Transformer() = default;
+
+    std::string GetName() const;
+    unsigned int GetLevel() const;
+    unsigned int GetStrength() const;
+    unsigned int GetRange() const;
+    unsigned int GetAmmo() const;
+    const Engine& GetEngine() const;
+    Transformer* GetAlly() const;
+
+    void SetName(const std::string& name);
+    void SetLevel(unsigned int level);
+    void SetStrength(unsigned int strength);
+    void SetRange(unsigned int range);
+    void SetAmmo(unsigned int ammo);
+    void SetEnginePower(int power);
+    void SetAlly(Transformer* ally);
+
+    virtual bool Move();
+    virtual bool Fire();
+    virtual bool Transform();
+
+    void TakeDamage(unsigned int damage);
+    bool IsAlive() const;
 };
 
-#endif // TRANSFORMER_H
+#endif

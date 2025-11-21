@@ -9,22 +9,22 @@
 #include "Transformer.h"
 
 class Decepticon : public Transformer {
-public:
-    Decepticon(const std::string& name = "Megatron", unsigned int level = 5);
-    ~Decepticon();
-
-    std::string getFaction() const;
-    void setFaction(const std::string& faction);
-
-    unsigned int getAggression() const;
-    void setAggression(unsigned int aggression);
-
-    bool attack();
-    bool sabotage();
-
 private:
-    std::string _faction;
-    unsigned int _aggression;
-};
+    bool treachery_level_;
+    std::string disguise_form_;
 
-#endif // DECEPTICON_H
+public:
+    Decepticon(const std::string& name, unsigned int level, unsigned int strength,
+               unsigned int range, unsigned int ammo, bool treachery_level,
+               const std::string& disguise_form, int engine_power = 100);
+
+    bool GetTreacheryLevel() const;
+    std::string GetDisguiseForm() const;
+
+    void SetTreacheryLevel(bool treachery_level);
+    void SetDisguiseForm(const std::string& disguise_form);
+
+    bool Transform() override;
+    bool Sabotage();
+};
+#endif
