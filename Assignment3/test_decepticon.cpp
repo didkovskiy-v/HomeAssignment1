@@ -1,19 +1,19 @@
 #include "Decepticon.h"
 #include <gtest/gtest.h>
 
-TEST(DecepticonTest, ConstructionAndAccessors) {
-    Decepticon d("Starscream", 7, 110, 40, 25, true, "Jet");
-    EXPECT_EQ(d.GetName(), "Starscream");
+TEST(DecepticonTest, Construction) {
+    Decepticon d("Megatron", 10, 180, 45, 35, true, "Tank");
+    EXPECT_EQ(d.GetName(), "Megatron");
     EXPECT_TRUE(d.GetTreacheryLevel());
-    EXPECT_EQ(d.GetDisguiseForm(), "Jet");
+    EXPECT_EQ(d.GetDisguiseForm(), "Tank");
 }
 
 TEST(DecepticonTest, Mutators) {
-    Decepticon d("SS", 6, 100, 35, 20, false, "Car");
+    Decepticon d("Megatron", 10, 180, 45, 35, false, "Gun");
     d.SetTreacheryLevel(true);
-    d.SetDisguiseForm("Helicopter");
+    d.SetDisguiseForm("Jet");
     EXPECT_TRUE(d.GetTreacheryLevel());
-    EXPECT_EQ(d.GetDisguiseForm(), "Helicopter");
+    EXPECT_EQ(d.GetDisguiseForm(), "Jet");
 }
 
 TEST(DecepticonTest, Methods) {
@@ -21,3 +21,4 @@ TEST(DecepticonTest, Methods) {
     EXPECT_TRUE(d.Transform());
     EXPECT_TRUE(d.Sabotage());
 }
+

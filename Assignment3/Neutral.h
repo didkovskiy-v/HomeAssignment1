@@ -1,8 +1,3 @@
-/*
-  * Vatslav Didkovskiy
-  * st142215@student.spbu.ru
-  * HomeAssignment3
-  */
 #ifndef NEUTRAL_H
 #define NEUTRAL_H
 
@@ -28,3 +23,4 @@ public:
     bool Negotiate();
 };
 #endif
+

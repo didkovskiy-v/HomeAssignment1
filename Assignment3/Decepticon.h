@@ -1,8 +1,3 @@
-/*
-  * Vatslav Didkovskiy
-  * st142215@student.spbu.ru
-  * HomeAssignment3
-  */
 #ifndef DECEPTICON_H
 #define DECEPTICON_H
 
@@ -28,3 +23,4 @@ public:
     bool Sabotage();
 };
 #endif
+

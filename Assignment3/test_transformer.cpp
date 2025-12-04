@@ -2,8 +2,8 @@
 #include <gtest/gtest.h>
 
 TEST(TransformerTest, ConstructorAndGetters) {
-    Transformer t("TestBot", 5, 100, 40, 25, 120);
-    EXPECT_EQ(t.GetName(), "TestBot");
+    Transformer t("Test", 5, 100, 40, 25, 120);
+    EXPECT_EQ(t.GetName(), "Test");
     EXPECT_EQ(t.GetLevel(), 5u);
     EXPECT_EQ(t.GetStrength(), 100u);
     EXPECT_EQ(t.GetRange(), 40u);
@@ -14,16 +14,17 @@ TEST(TransformerTest, ConstructorAndGetters) {
 
 TEST(TransformerTest, Setters) {
     Transformer t("Bot", 1, 50, 10, 5);
-    t.SetName("NewBot");
+    Transformer other("Other", 1, 10, 10, 10);
+    
+    t.SetName("New");
     t.SetLevel(2);
     t.SetStrength(60);
     t.SetRange(15);
     t.SetAmmo(10);
     t.SetEnginePower(110);
-    Transformer other("Other", 1, 10, 10, 10);
     t.SetAlly(&other);
 
-    EXPECT_EQ(t.GetName(), "NewBot");
+    EXPECT_EQ(t.GetName(), "New");
     EXPECT_EQ(t.GetLevel(), 2u);
     EXPECT_EQ(t.GetStrength(), 60u);
     EXPECT_EQ(t.GetRange(), 15u);
@@ -49,3 +50,4 @@ TEST(TransformerTest, DamageAndAlive) {
     EXPECT_EQ(t.GetStrength(), 0u);
     EXPECT_FALSE(t.IsAlive());
 }
+

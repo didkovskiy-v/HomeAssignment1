@@ -1,18 +1,18 @@
 #include "Autobot.h"
 #include <gtest/gtest.h>
 
-TEST(AutobotTest, ConstructionAndAccessors) {
-    Autobot a("Bumblebee", 6, 90, 35, 20, "Optimus Prime", true);
-    EXPECT_EQ(a.GetName(), "Bumblebee");
-    EXPECT_EQ(a.GetLeaderName(), "Optimus Prime");
-    EXPECT_TRUE(a.GetMedicMode());
+TEST(AutobotTest, Construction) {
+    Autobot a("Bee", 3, 90, 30, 20, "Optimus", false);
+    EXPECT_EQ(a.GetName(), "Bee");
+    EXPECT_EQ(a.GetLeaderName(), "Optimus");
+    EXPECT_FALSE(a.GetMedicMode());
 }
 
 TEST(AutobotTest, Mutators) {
-    Autobot a("BB", 5, 80, 30, 15, "OP", false);
-    a.SetLeaderName("New Leader");
+    Autobot a("Bee", 3, 90, 30, 20, "Optimus");
+    a.SetLeaderName("NewLeader");
     a.SetMedicMode(true);
-    EXPECT_EQ(a.GetLeaderName(), "New Leader");
+    EXPECT_EQ(a.GetLeaderName(), "NewLeader");
     EXPECT_TRUE(a.GetMedicMode());
 }
 
@@ -21,3 +21,4 @@ TEST(AutobotTest, Methods) {
     EXPECT_TRUE(a.Transform());
     EXPECT_TRUE(a.Heal());
 }
+

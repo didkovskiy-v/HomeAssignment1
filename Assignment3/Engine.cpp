@@ -9,3 +9,4 @@ int Engine::GetPower() const {
 void Engine::SetPower(int power) {
     power_ = power;
 }
+

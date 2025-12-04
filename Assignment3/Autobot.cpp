@@ -1,8 +1,3 @@
-/*
-  * Vatslav Didkovskiy
-  * st142215@student.spbu.ru
-  * HomeAssignment3
-  */
 #include "Autobot.h"
 
 Autobot::Autobot(const std::string& name, unsigned int level, unsigned int strength,
@@ -11,26 +6,12 @@ Autobot::Autobot(const std::string& name, unsigned int level, unsigned int stren
     : Transformer(name, level, strength, range, ammo, engine_power),
       leader_name_(leader_name), medic_mode_(medic_mode) {}
 
-std::string Autobot::GetLeaderName() const {
-    return leader_name_;
-}
+std::string Autobot::GetLeaderName() const { return leader_name_; }
+bool Autobot::GetMedicMode() const { return medic_mode_; }
 
-bool Autobot::GetMedicMode() const {
-    return medic_mode_;
-}
+void Autobot::SetLeaderName(const std::string& leader_name) { leader_name_ = leader_name; }
+void Autobot::SetMedicMode(bool medic_mode) { medic_mode_ = medic_mode; }
 
-void Autobot::SetLeaderName(const std::string& leader_name) {
-    leader_name_ = leader_name;
-}
+bool Autobot::Transform() { return true; }
+bool Autobot::Heal() { return true; }
 
-void Autobot::SetMedicMode(bool medic_mode) {
-    medic_mode_ = medic_mode;
-}
-
-bool Autobot::Transform() {
-    return true;
-}
-
-bool Autobot::Heal() {
-    return true;
-}

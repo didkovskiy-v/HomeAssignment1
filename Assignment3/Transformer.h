@@ -1,8 +1,3 @@
-/*
-  * Vatslav Didkovskiy
-  * st142215@student.spbu.ru
-  * HomeAssignment3
-  */
 #ifndef TRANSFORMER_H
 #define TRANSFORMER_H
 
@@ -49,3 +44,4 @@ public:
 };
 
 #endif
+
