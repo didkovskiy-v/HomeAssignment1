@@ -1,3 +1,8 @@
+/*
+  * Vatslav Didkovskiy
+  * st142215@student.spbu.ru
+  * HomeAssignment3
+  */
 #ifndef AUTOBOT_H
 #define AUTOBOT_H
 

@@ -1,3 +1,8 @@
+/*
+  * Vatslav Didkovskiy
+  * st142215@student.spbu.ru
+  * HomeAssignment3
+  */
 #include "Transformer.h"
 
 Transformer::Transformer(const std::string& name, unsigned int level, unsigned int strength,

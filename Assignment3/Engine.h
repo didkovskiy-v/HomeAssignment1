@@ -1,3 +1,8 @@
+/*
+  * Vatslav Didkovskiy
+  * st142215@student.spbu.ru
+  * HomeAssignment3
+  */
 #ifndef ENGINE_H
 #define ENGINE_H
 

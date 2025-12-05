@@ -1,3 +1,8 @@
+/*
+  * Vatslav Didkovskiy
+  * st142215@student.spbu.ru
+  * HomeAssignment3
+  */
 #include "Autobot.h"
 
 Autobot::Autobot(const std::string& name, unsigned int level, unsigned int strength,
