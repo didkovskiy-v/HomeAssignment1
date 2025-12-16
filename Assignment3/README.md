@@ -19,5 +19,11 @@ Implementation of the "Transformers" class hierarchy (based on Assignment 3).
   - Calls via std::vector<Transformer*> containing 9 objects (3 of each type)
 
 ## Build and Run Tests
-```sh
+Run all tests:
 make test
+Run individual test suites:
+./build/test_engine.test
+./build/test_transformer.test
+./build/test_autobot.test
+./build/test_decepticon.test
+./build/test_neutral.test
