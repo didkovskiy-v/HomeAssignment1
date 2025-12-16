@@ -1,7 +1,7 @@
 /*
   * Vatslav Didkovskiy
   * st142215@student.spbu.ru
-  * HomeAssignment3
+  * HomeAssignment4
   */
 #ifndef DECEPTICON_H
 #define DECEPTICON_H

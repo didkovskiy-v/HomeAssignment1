@@ -1,7 +1,7 @@
 /*
   * Vatslav Didkovskiy
   * st142215@student.spbu.ru
-  * HomeAssignment3
+  * HomeAssignment4
   */
 #ifndef TRANSFORMER_H
 #define TRANSFORMER_H
