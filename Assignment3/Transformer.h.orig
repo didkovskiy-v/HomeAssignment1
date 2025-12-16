@@ -10,8 +10,7 @@
 #include <iostream>
 #include "Engine.h"
 
-class Transformer
-{
+class Transformer {
 protected:
     std::string name_;
     unsigned int level_;

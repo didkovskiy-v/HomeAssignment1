@@ -8,8 +8,7 @@
 
 #include "Transformer.h"
 
-class Autobot : public Transformer
-{
+class Autobot : public Transformer {
 private:
     std::string leader_name_;
     bool medic_mode_;
@@ -22,7 +21,7 @@ public:
     std::string GetType() const override;
     std::string GetLeaderName() const;
     bool GetMedicMode() const;
-
+    
     void SetLeaderName(const std::string& leader_name);
     void SetMedicMode(bool medic_mode);
 

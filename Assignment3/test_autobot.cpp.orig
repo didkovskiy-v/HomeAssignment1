@@ -7,35 +7,30 @@
 #include <gtest/gtest.h>
 #include <sstream>
 
-TEST(AutobotTest, DefaultConstructor)
-{
+TEST(AutobotTest, DefaultConstructor) {
     Autobot a;
     EXPECT_EQ(a.GetType(), "Autobot");
 }
 
-TEST(AutobotTest, ParameterizedConstructor)
-{
+TEST(AutobotTest, ParameterizedConstructor) {
     Autobot a("Bee", 3, 90, 30, 20, "Optimus", true);
     EXPECT_EQ(a.GetLeaderName(), "Optimus");
     EXPECT_TRUE(a.GetMedicMode());
 }
 
-TEST(AutobotTest, DirectCall)
-{
+TEST(AutobotTest, DirectCall) {
     Autobot a("Bee", 3, 90, 30, 20, "Optimus");
     a.Heal();
     a.Transform();
 }
 
-TEST(AutobotTest, ViaBasePointer)
-{
+TEST(AutobotTest, ViaBasePointer) {
     Autobot a("Bee", 3, 90, 30, 20, "Optimus");
     Transformer* p = &a;
     p->Transform();
 }
 
-TEST(AutobotTest, StreamOperator)
-{
+TEST(AutobotTest, StreamOperator) {
     Autobot a("Bee", 3, 90, 30, 20, "Optimus");
     std::ostringstream oss;
     oss << a;

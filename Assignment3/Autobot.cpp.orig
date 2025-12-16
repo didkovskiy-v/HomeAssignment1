@@ -16,58 +16,49 @@ Autobot::Autobot(const std::string& name, unsigned int level, unsigned int stren
       leader_name_(leader_name), medic_mode_(medic_mode) {}
 
 
-std::string Autobot::GetType() const
-{
+std::string Autobot::GetType() const {
     std::cout << "Autobot::GetType called" << std::endl;
     return "Autobot";
 }
 
-std::string Autobot::GetLeaderName() const
-{
+std::string Autobot::GetLeaderName() const {
     std::cout << "Autobot::GetLeaderName called" << std::endl;
     return leader_name_;
 }
 
-bool Autobot::GetMedicMode() const
-{
+bool Autobot::GetMedicMode() const {
     std::cout << "Autobot::GetMedicMode called" << std::endl;
     return medic_mode_;
 }
 
-void Autobot::SetLeaderName(const std::string& leader_name)
-{
+void Autobot::SetLeaderName(const std::string& leader_name) {
     std::cout << "Autobot::SetLeaderName called" << std::endl;
     leader_name_ = leader_name;
 }
 
-void Autobot::SetMedicMode(bool medic_mode)
-{
+void Autobot::SetMedicMode(bool medic_mode) {
     std::cout << "Autobot::SetMedicMode called" << std::endl;
     medic_mode_ = medic_mode;
 }
 
-bool Autobot::Transform()
-{
+bool Autobot::Transform() {
     std::cout << "Autobot::Transform called" << std::endl;
     return true;
 }
 
-bool Autobot::Heal()
-{
+bool Autobot::Heal() {
     std::cout << "Autobot::Heal called" << std::endl;
     return true;
 }
 
-std::string Autobot::ToString() const
-{
+std::string Autobot::ToString() const {
     std::cout << "Autobot::ToString called" << std::endl;
     return "Autobot(name=" + name_ +
            ", leader=" + leader_name_ +
            ", medic=" + (medic_mode_ ? "true" : "false") + ")";
 }
 
-std::ostream& operator<<(std::ostream& os, const Autobot& a)
-{
+std::ostream& operator<<(std::ostream& os, const Autobot& a) {
     os << a.ToString();
     return os;
 }

@@ -8,8 +8,7 @@
 
 #include "Transformer.h"
 
-class Decepticon : public Transformer
-{
+class Decepticon : public Transformer {
 private:
     bool treachery_level_;
     std::string disguise_form_;
