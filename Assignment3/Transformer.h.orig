@@ -1,7 +1,7 @@
 /*
   * Vatslav Didkovskiy
   * st142215@student.spbu.ru
-  * HomeAssignment4
+  * HomeAssignment3
   */
 #ifndef TRANSFORMER_H
 #define TRANSFORMER_H
@@ -10,8 +10,7 @@
 #include <iostream>
 #include "Engine.h"
 
-class Transformer
-{
+class Transformer {
 protected:
     std::string name_;
     unsigned int level_;

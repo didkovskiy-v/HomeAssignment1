@@ -1,23 +1,29 @@
-# Assignment 3
+# Assignment 4
 ## Author  
 Didkovskiy Vatslav 25.581-MM
 ## Contacts  
 st142215@student.spbu.ru
 ## Description  
-Implementation of the "Transformers" class hierarchy.
-Base class Transformer contains 5 fields, 3 methods, composition (Engine), and association (ally pointer).
-Three derived classes: Autobot, Decepticon, Neutral — each with 2–3 fields and 1–2 methods.
-All classes are defined in separate .h/.cpp files.
-All classes are tested using Google Test.
+Implementation of the "Transformers" class hierarchy (based on Assignment 3).
 
-## Build and Run Tests  
-Build all tests:
-make
+- Base class Transformer with 5 fields, composition (Engine), and association (ally)
+- Three derived classes: Autobot, Decepticon, Neutral
+- Each class has:
+  - Two constructors (default and parameterized)
+  - Operator << for output to any std::ostream
+  - 2–3 virtual methods, each printing "ClassName::MethodName called"
+  - One pure virtual method (GetType()) in the base class
+- Full unit test coverage using Google Test:
+  - Direct method calls (obj.method())
+  - Calls via base class pointer (Transformer* p = &obj; p->method();)
+  - Calls via std::vector<Transformer*> containing 9 objects (3 of each type)
+
+## Build and Run Tests
 Run all tests:
 make test
-Run individual tests:
-make test_engine
-make test_transformer
-make test_autobot
-make test_decepticon
-make test_neutral
+Run individual test suites:
+./build/test_engine.test
+./build/test_transformer.test
+./build/test_autobot.test
+./build/test_decepticon.test
+./build/test_neutral.test

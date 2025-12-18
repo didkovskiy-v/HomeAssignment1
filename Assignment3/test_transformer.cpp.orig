@@ -1,7 +1,7 @@
 /*
   * Vatslav Didkovskiy
   * st142215@student.spbu.ru
-  * HomeAssignment4
+  * HomeAssignment3
   */
 #include <gtest/gtest.h>
 #include "Autobot.h"
@@ -10,16 +10,14 @@
 #include <sstream>
 #include <vector>
 
-TEST(TransformerTest, DirectCallAutobot)
-{
+TEST(TransformerTest, DirectCallAutobot) {
     Autobot a("Optimus", 10, 150, 50, 30, "None");
     a.Transform();
     a.Move();
     a.Fire();
 }
 
-TEST(TransformerTest, ViaBasePointer)
-{
+TEST(TransformerTest, ViaBasePointer) {
     Autobot a("Bee", 5, 100, 30, 20, "Optimus");
     Transformer* p = &a;
     p->Transform();
@@ -27,8 +25,7 @@ TEST(TransformerTest, ViaBasePointer)
     p->Fire();
 }
 
-TEST(TransformerTest, VectorOfTransformers)
-{
+TEST(TransformerTest, VectorOfTransformers) {
     std::vector<Transformer*> bots;
     bots.push_back(new Autobot("A1", 1, 50, 10, 5, "L"));
     bots.push_back(new Autobot("A2", 1, 50, 10, 5, "L"));
@@ -40,8 +37,7 @@ TEST(TransformerTest, VectorOfTransformers)
     bots.push_back(new Neutral("N2", 1, 50, 10, 5, "None"));
     bots.push_back(new Neutral("N3", 1, 50, 10, 5, "Free"));
 
-    for (auto* bot : bots)
-    {
+    for (auto* bot : bots) {
         bot->Transform();
         bot->Move();
         bot->Fire();
@@ -49,8 +45,7 @@ TEST(TransformerTest, VectorOfTransformers)
     }
 }
 
-TEST(TransformerTest, StreamOperator)
-{
+TEST(TransformerTest, StreamOperator) {
     Autobot a("Test", 1, 50, 10, 5, "Leader");
     std::ostringstream oss;
     oss << a;

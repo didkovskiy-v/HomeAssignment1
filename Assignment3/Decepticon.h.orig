@@ -1,15 +1,14 @@
 /*
   * Vatslav Didkovskiy
   * st142215@student.spbu.ru
-  * HomeAssignment4
+  * HomeAssignment3
   */
 #ifndef DECEPTICON_H
 #define DECEPTICON_H
 
 #include "Transformer.h"
 
-class Decepticon : public Transformer
-{
+class Decepticon : public Transformer {
 private:
     bool treachery_level_;
     std::string disguise_form_;

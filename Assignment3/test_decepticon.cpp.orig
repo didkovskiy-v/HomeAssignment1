@@ -1,41 +1,36 @@
 /*
   * Vatslav Didkovskiy
   * st142215@student.spbu.ru
-  * HomeAssignment4
+  * HomeAssignment3
   */
 #include "Decepticon.h"
 #include <gtest/gtest.h>
 #include <sstream>
 
-TEST(DecepticonTest, DefaultConstructor)
-{
+TEST(DecepticonTest, DefaultConstructor) {
     Decepticon d;
     EXPECT_EQ(d.GetType(), "Decepticon");
 }
 
-TEST(DecepticonTest, ParameterizedConstructor)
-{
+TEST(DecepticonTest, ParameterizedConstructor) {
     Decepticon d("Megatron", 10, 180, 45, 35, true, "Tank");
     EXPECT_TRUE(d.GetTreacheryLevel());
     EXPECT_EQ(d.GetDisguiseForm(), "Tank");
 }
 
-TEST(DecepticonTest, DirectCall)
-{
+TEST(DecepticonTest, DirectCall) {
     Decepticon d("Starscream", 7, 110, 40, 25, true, "Jet");
     d.Sabotage();
     d.Transform();
 }
 
-TEST(DecepticonTest, ViaBasePointer)
-{
+TEST(DecepticonTest, ViaBasePointer) {
     Decepticon d("Megatron", 10, 180, 45, 35, false, "Gun");
     Transformer* p = &d;
     p->Transform();
 }
 
-TEST(DecepticonTest, StreamOperator)
-{
+TEST(DecepticonTest, StreamOperator) {
     Decepticon d("SS", 7, 110, 40, 25, true, "Jet");
     std::ostringstream oss;
     oss << d;

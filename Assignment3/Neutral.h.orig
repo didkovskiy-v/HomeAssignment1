@@ -1,15 +1,14 @@
 /*
   * Vatslav Didkovskiy
   * st142215@student.spbu.ru
-  * HomeAssignment4
+  * HomeAssignment3
   */
 #ifndef NEUTRAL_H
 #define NEUTRAL_H
 
 #include "Transformer.h"
 
-class Neutral : public Transformer
-{
+class Neutral : public Transformer {
 private:
     std::string affiliation_;
     bool mercenary_;
