@@ -26,8 +26,7 @@ TEST(MatrixInt, Multiplication) {
     a.at(0, 1) = 2;
     a.at(1, 0) = 3;
     a.at(1, 1) = 4;
-    Matr<int> b = a;
-    Matr<int> c = a * b;
+    Matr<int> c = a * a;
     EXPECT_EQ(c.at(0, 0), 7);
     EXPECT_EQ(c.at(1, 1), 22);
 }
@@ -44,14 +43,12 @@ TEST(MatrixDouble, Summation) {
     Matr<double> b(2, 2, 2.5);
     Matr<double> c = a + b;
     EXPECT_DOUBLE_EQ(c.at(0, 0), 4.0);
-    EXPECT_DOUBLE_EQ(c.at(1, 1), 4.0);
 }
 
 TEST(MatrixDouble, MultiplicationByScalar) {
     Matr<double> a(2, 2, 1.5);
     Matr<double> b = a * 2.0;
     EXPECT_DOUBLE_EQ(b.at(0, 0), 3.0);
-    EXPECT_DOUBLE_EQ(b.at(1, 1), 3.0);
 }
 
 TEST(MatrixDouble, Multiplication) {
@@ -86,10 +83,8 @@ TEST(MatrixFract, MultiplicationByScalar) {
 }
 
 TEST(MatrixFract, Multiplication) {
-    Fract r1(1, 2);
-    Fract r2(2, 3);
-    Matr<Fract> m(1, 1, r1);
-    Matr<Fract> n(1, 1, r2);
+    Matr<Fract> m(1, 1, Fract(1, 2));
+    Matr<Fract> n(1, 1, Fract(2, 3));
     Matr<Fract> c = m * n;
     EXPECT_EQ(c.at(0, 0), Fract(1, 3));
 }

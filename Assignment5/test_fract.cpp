@@ -27,15 +27,15 @@ TEST(FractTest, Normalization) {
 TEST(FractTest, Addition) {
     Fract a(1, 2);
     Fract b(1, 3);
-    Fract result = a + b;
-    EXPECT_EQ(result, Fract(5, 6));
+    Fract c = a + b;
+    EXPECT_EQ(c, Fract(5, 6));
 }
 
 TEST(FractTest, Multiplication) {
     Fract a(2, 3);
     Fract b(3, 4);
-    Fract result = a * b;
-    EXPECT_EQ(result, Fract(1, 2));
+    Fract c = a * b;
+    EXPECT_EQ(c, Fract(1, 2));
 }
 
 TEST(FractTest, ZeroDivision) {
