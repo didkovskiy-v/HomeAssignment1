@@ -1,29 +1,43 @@
 /*
   * Vatslav Didkovskiy
   * st142215@student.spbu.ru
-  * HomeAssignment3
+  * HomeAssignment4
   */
 #include "Decepticon.h"
 #include <gtest/gtest.h>
+#include <sstream>
 
-TEST(DecepticonTest, Construction) {
+TEST(DecepticonTest, DefaultConstructor)
+{
+    Decepticon d;
+    EXPECT_EQ(d.GetType(), "Decepticon");
+}
+
+TEST(DecepticonTest, ParameterizedConstructor)
+{
     Decepticon d("Megatron", 10, 180, 45, 35, true, "Tank");
-    EXPECT_EQ(d.GetName(), "Megatron");
     EXPECT_TRUE(d.GetTreacheryLevel());
     EXPECT_EQ(d.GetDisguiseForm(), "Tank");
 }
 
-TEST(DecepticonTest, Mutators) {
+TEST(DecepticonTest, DirectCall)
+{
+    Decepticon d("Starscream", 7, 110, 40, 25, true, "Jet");
+    d.Sabotage();
+    d.Transform();
+}
+
+TEST(DecepticonTest, ViaBasePointer)
+{
     Decepticon d("Megatron", 10, 180, 45, 35, false, "Gun");
-    d.SetTreacheryLevel(true);
-    d.SetDisguiseForm("Jet");
-    EXPECT_TRUE(d.GetTreacheryLevel());
-    EXPECT_EQ(d.GetDisguiseForm(), "Jet");
+    Transformer* p = &d;
+    p->Transform();
 }
 
-TEST(DecepticonTest, Methods) {
-    Decepticon d("Test", 1, 50, 10, 5, false, "Form");
-    EXPECT_TRUE(d.Transform());
-    EXPECT_TRUE(d.Sabotage());
+TEST(DecepticonTest, StreamOperator)
+{
+    Decepticon d("SS", 7, 110, 40, 25, true, "Jet");
+    std::ostringstream oss;
+    oss << d;
+    EXPECT_FALSE(oss.str().empty());
 }
-

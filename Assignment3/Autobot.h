@@ -1,23 +1,25 @@
 /*
   * Vatslav Didkovskiy
   * st142215@student.spbu.ru
-  * HomeAssignment3
+  * HomeAssignment4
   */
 #ifndef AUTOBOT_H
 #define AUTOBOT_H
 
 #include "Transformer.h"
 
-class Autobot : public Transformer {
+class Autobot : public Transformer
+{
 private:
     std::string leader_name_;
     bool medic_mode_;
 
 public:
+    Autobot();
     Autobot(const std::string& name, unsigned int level, unsigned int strength,
             unsigned int range, unsigned int ammo, const std::string& leader_name,
             bool medic_mode = false, int engine_power = 100);
-
+    std::string GetType() const override;
     std::string GetLeaderName() const;
     bool GetMedicMode() const;
 
@@ -26,6 +28,12 @@ public:
 
     bool Transform() override;
     bool Heal();
-};
-#endif
 
+    std::string ToString() const override;
+
+    friend std::ostream& operator<<(std::ostream& os, const Autobot& a);
+};
+
+std::ostream& operator<<(std::ostream& os, const Autobot& a);
+
+#endif

@@ -1,22 +1,27 @@
 /*
   * Vatslav Didkovskiy
   * st142215@student.spbu.ru
-  * HomeAssignment3
+  * HomeAssignment4
   */
 #ifndef NEUTRAL_H
 #define NEUTRAL_H
 
 #include "Transformer.h"
 
-class Neutral : public Transformer {
+class Neutral : public Transformer
+{
 private:
     std::string affiliation_;
     bool mercenary_;
 
 public:
+    Neutral();
+
     Neutral(const std::string& name, unsigned int level, unsigned int strength,
             unsigned int range, unsigned int ammo, const std::string& affiliation,
             bool mercenary = false, int engine_power = 100);
+
+    std::string GetType() const override;
 
     std::string GetAffiliation() const;
     bool GetMercenary() const;
@@ -26,6 +31,12 @@ public:
 
     bool Transform() override;
     bool Negotiate();
-};
-#endif
 
+    std::string ToString() const override;
+
+    friend std::ostream& operator<<(std::ostream& os, const Neutral& n);
+};
+
+std::ostream& operator<<(std::ostream& os, const Neutral& n);
+
+#endif

@@ -1,20 +1,28 @@
 /*
   * Vatslav Didkovskiy
   * st142215@student.spbu.ru
-  * HomeAssignment3
+  * HomeAssignment4
   */
 #ifndef ENGINE_H
 #define ENGINE_H
 
-class Engine {
+#include <string>
+#include <iostream>
+
+class Engine
+{
 private:
     int power_;
 
 public:
-    explicit Engine(int power = 100);
+    Engine();
+    explicit Engine(int power);
     int GetPower() const;
     void SetPower(int power);
+    std::string ToString() const;
 };
+
+std::ostream& operator<<(std::ostream& os, const Engine& engine);
 
 #endif
 

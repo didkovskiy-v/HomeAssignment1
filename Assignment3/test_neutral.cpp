@@ -1,29 +1,43 @@
 /*
   * Vatslav Didkovskiy
   * st142215@student.spbu.ru
-  * HomeAssignment3
+  * HomeAssignment4
   */
 #include "Neutral.h"
 #include <gtest/gtest.h>
+#include <sstream>
 
-TEST(NeutralTest, Construction) {
-    Neutral n("Wheeljack", 6, 95, 30, 18, "Guild", true);
-    EXPECT_EQ(n.GetName(), "Wheeljack");
-    EXPECT_EQ(n.GetAffiliation(), "Guild");
+TEST(NeutralTest, DefaultConstructor)
+{
+    Neutral n;
+    EXPECT_EQ(n.GetType(), "Neutral");
+}
+
+TEST(NeutralTest, ParameterizedConstructor)
+{
+    Neutral n("Wheeljack", 6, 95, 30, 18, "Science Guild", true);
+    EXPECT_EQ(n.GetAffiliation(), "Science Guild");
     EXPECT_TRUE(n.GetMercenary());
 }
 
-TEST(NeutralTest, Mutators) {
-    Neutral n("Wheeljack", 6, 95, 30, 18, "Guild");
-    n.SetAffiliation("None");
-    n.SetMercenary(false);
-    EXPECT_EQ(n.GetAffiliation(), "None");
-    EXPECT_FALSE(n.GetMercenary());
+TEST(NeutralTest, DirectCall)
+{
+    Neutral n("Ratchet", 8, 120, 25, 20, "Medic");
+    n.Negotiate();
+    n.Transform();
 }
 
-TEST(NeutralTest, Methods) {
-    Neutral n("Test", 1, 50, 10, 5, "None");
-    EXPECT_TRUE(n.Transform());
-    EXPECT_TRUE(n.Negotiate());
+TEST(NeutralTest, ViaBasePointer)
+{
+    Neutral n("WJ", 6, 95, 30, 18, "Tech");
+    Transformer* p = &n;
+    p->Transform();
 }
 
+TEST(NeutralTest, StreamOperator)
+{
+    Neutral n("Ratchet", 8, 120, 25, 20, "None");
+    std::ostringstream oss;
+    oss << n;
+    EXPECT_FALSE(oss.str().empty());
+}

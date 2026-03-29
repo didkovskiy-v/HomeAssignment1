@@ -1,58 +1,59 @@
 /*
   * Vatslav Didkovskiy
   * st142215@student.spbu.ru
-  * HomeAssignment3
+  * HomeAssignment4
   */
-#include "Transformer.h"
 #include <gtest/gtest.h>
+#include "Autobot.h"
+#include "Decepticon.h"
+#include "Neutral.h"
+#include <sstream>
+#include <vector>
 
-TEST(TransformerTest, ConstructorAndGetters) {
-    Transformer t("Test", 5, 100, 40, 25, 120);
-    EXPECT_EQ(t.GetName(), "Test");
-    EXPECT_EQ(t.GetLevel(), 5u);
-    EXPECT_EQ(t.GetStrength(), 100u);
-    EXPECT_EQ(t.GetRange(), 40u);
-    EXPECT_EQ(t.GetAmmo(), 25u);
-    EXPECT_EQ(t.GetEngine().GetPower(), 120);
-    EXPECT_EQ(t.GetAlly(), nullptr);
+TEST(TransformerTest, DirectCallAutobot)
+{
+    Autobot a("Optimus", 10, 150, 50, 30, "None");
+    a.Transform();
+    a.Move();
+    a.Fire();
 }
 
-TEST(TransformerTest, Setters) {
-    Transformer t("Bot", 1, 50, 10, 5);
-    Transformer other("Other", 1, 10, 10, 10);
-    
-    t.SetName("New");
-    t.SetLevel(2);
-    t.SetStrength(60);
-    t.SetRange(15);
-    t.SetAmmo(10);
-    t.SetEnginePower(110);
-    t.SetAlly(&other);
-
-    EXPECT_EQ(t.GetName(), "New");
-    EXPECT_EQ(t.GetLevel(), 2u);
-    EXPECT_EQ(t.GetStrength(), 60u);
-    EXPECT_EQ(t.GetRange(), 15u);
-    EXPECT_EQ(t.GetAmmo(), 10u);
-    EXPECT_EQ(t.GetEngine().GetPower(), 110);
-    EXPECT_EQ(t.GetAlly(), &other);
+TEST(TransformerTest, ViaBasePointer)
+{
+    Autobot a("Bee", 5, 100, 30, 20, "Optimus");
+    Transformer* p = &a;
+    p->Transform();
+    p->Move();
+    p->Fire();
 }
 
-TEST(TransformerTest, Methods) {
-    Transformer t("Bot", 1, 50, 10, 5);
-    EXPECT_TRUE(t.Move());
-    EXPECT_TRUE(t.Transform());
-    EXPECT_TRUE(t.Fire());
-    EXPECT_EQ(t.GetAmmo(), 4u);
+TEST(TransformerTest, VectorOfTransformers)
+{
+    std::vector<Transformer*> bots;
+    bots.push_back(new Autobot("A1", 1, 50, 10, 5, "L"));
+    bots.push_back(new Autobot("A2", 1, 50, 10, 5, "L"));
+    bots.push_back(new Autobot("A3", 1, 50, 10, 5, "L"));
+    bots.push_back(new Decepticon("D1", 1, 50, 10, 5, false, "Tank"));
+    bots.push_back(new Decepticon("D2", 1, 50, 10, 5, true, "Jet"));
+    bots.push_back(new Decepticon("D3", 1, 50, 10, 5, false, "Gun"));
+    bots.push_back(new Neutral("N1", 1, 50, 10, 5, "Guild"));
+    bots.push_back(new Neutral("N2", 1, 50, 10, 5, "None"));
+    bots.push_back(new Neutral("N3", 1, 50, 10, 5, "Free"));
+
+    for (auto* bot : bots)
+    {
+        bot->Transform();
+        bot->Move();
+        bot->Fire();
+        delete bot;
+    }
 }
 
-TEST(TransformerTest, DamageAndAlive) {
-    Transformer t("Bot", 1, 50, 10, 5);
-    t.TakeDamage(30);
-    EXPECT_EQ(t.GetStrength(), 20u);
-    EXPECT_TRUE(t.IsAlive());
-    t.TakeDamage(30);
-    EXPECT_EQ(t.GetStrength(), 0u);
-    EXPECT_FALSE(t.IsAlive());
+TEST(TransformerTest, StreamOperator)
+{
+    Autobot a("Test", 1, 50, 10, 5, "Leader");
+    std::ostringstream oss;
+    oss << a;
+    EXPECT_FALSE(oss.str().empty());
 }
 

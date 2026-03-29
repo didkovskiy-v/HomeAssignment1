@@ -1,16 +1,18 @@
 /*
   * Vatslav Didkovskiy
   * st142215@student.spbu.ru
-  * HomeAssignment3
+  * HomeAssignment4
   */
 #ifndef TRANSFORMER_H
 #define TRANSFORMER_H
 
 #include <string>
+#include <iostream>
 #include "Engine.h"
 
-class Transformer {
-private:
+class Transformer
+{
+protected:
     std::string name_;
     unsigned int level_;
     unsigned int strength_;
@@ -20,9 +22,12 @@ private:
     Transformer* ally_;
 
 public:
+    Transformer();
     Transformer(const std::string& name, unsigned int level, unsigned int strength,
                 unsigned int range, unsigned int ammo, int engine_power = 100);
     virtual ~Transformer() = default;
+
+    virtual std::string GetType() const = 0;
 
     std::string GetName() const;
     unsigned int GetLevel() const;
@@ -46,7 +51,11 @@ public:
 
     void TakeDamage(unsigned int damage);
     bool IsAlive() const;
+
+    virtual std::string ToString() const = 0;
+    friend std::ostream& operator<<(std::ostream& os, const Transformer& t);
 };
 
-#endif
+std::ostream& operator<<(std::ostream& os, const Transformer& t);
 
+#endif
